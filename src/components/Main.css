@@ -13,3 +13,30 @@
     border-width: 1px;
     box-shadow: 2px 2px 2px grey;
 }
+
+.rowRow {
+    display: flex;
+    flex-direction: row;
+}
+
+@media screen and (max-width: 600px) {
+    .rowRow {
+        flex-direction: column; 
+    }
+  }
+
+.specialPic {
+    width: 60%;
+    margin: 10px;
+    object-fit: contain;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    box-shadow: 2px 2px 2px 2px  black;
+    border-radius: 10px;
+}
+
+article {
+    font-style: italic;
+    padding: 20px;
+}

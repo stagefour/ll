@@ -75,7 +75,7 @@ export default function Menu () {
         <>
         <div className='menuDiv'>
         <Heading as="h1">
-        Little Lemon Restaurant
+        Little Lemon Restaurant!
         <br/>
         Our Menu:
         </Heading>

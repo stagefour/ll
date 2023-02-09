@@ -26,10 +26,11 @@ import * as Yup from 'yup';
 
 export default function BookTable () {
 
-  const [isOpen, setIsOpen] = useState(false)
-  const onClose = () => setIsOpen(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isErrorOpen, setIsErrorOpen] = useState(false);
+  const onClose = () => { setIsOpen(false); formik.resetForm(); };
+  const onErrorClose = () => { setIsErrorOpen(false); };
   const cancelRef = useRef();
-  const [yourName, setYourName] = useState ('');
   const [startDate, setStartDate] = useState(new Date());
 
     const formik = useFormik({
@@ -45,9 +46,7 @@ export default function BookTable () {
         onSubmit: (values) => {
           formik.values.date = startDate.toLocaleDateString();
           console.log (values);
-          setYourName (values.firstName);
-          setIsOpen(true);
-          formik.resetForm();
+          Math.random() > 0.5 ? setIsOpen(true) : setIsErrorOpen (true);
         },
         validationSchema: Yup.object({
           email: Yup.string()
@@ -85,12 +84,46 @@ export default function BookTable () {
               <AlertDialogHeader fontSize="lg" fontWeight="bold">
                 {'Thank you!'}
               </AlertDialogHeader>
-              <AlertDialogBody>{'Thanks for your booking ' + yourName + ', you will get the confirmation on your e-mail soon!'}</AlertDialogBody>
+              <AlertDialogBody>
+                {'Thanks for your booking ' + formik.values.firstName + ', you will get the confirmation on your e-mail soon!'}
+                <br/>
+                <br/>
+                {<b>Booking detalis:</b>}
+                <br/>
+                {' - On ' + formik.values.date + ' at ' + formik.values.hour + ' table for ' + formik.values.guests}
+                {formik.values.guests === 1 ? ' guest.' : ' guests.'}
+                <br/>
+                {formik.values.occasion === 'none' ? ' - Just a nice dinner without any particular occasion.'
+                          : ' - It will be your ' + formik.values.occasion + ' party!!!'}
+                <br/>
+                {formik.values.comment === 'none' ? ' - No special requirements.' : ' - Special requirements: ' + formik.values.comment}
+              </AlertDialogBody>
               <AlertDialogCloseButton />
             </AlertDialogContent>
           </AlertDialogOverlay>
       </AlertDialog>
   
+      <AlertDialog
+          motionPreset='slideInBottom'
+          isOpen={isErrorOpen}
+          leastDestructiveRef={cancelRef}
+          onClose={onErrorClose}>
+          <AlertDialogOverlay>
+            <AlertDialogContent py={4} backgroundColor={'#FF8A65'}>
+              <AlertDialogHeader fontSize="lg" fontWeight="bold">
+                {'Too bad...'}
+              </AlertDialogHeader>
+              <AlertDialogBody>
+                {'Sorry ' + formik.values.firstName + ', this reservation slot is already booked!'}
+                <br/>
+                {'Please choose another hour.'}
+              </AlertDialogBody>
+              <AlertDialogCloseButton />
+            </AlertDialogContent>
+          </AlertDialogOverlay>
+      </AlertDialog>
+
+
             <VStack spacing={4}>
               <FormControl isInvalid={formik.errors.firstName && formik.touched.firstName}>
                 <FormLabel htmlFor="firstName">Name</FormLabel>
@@ -137,10 +170,11 @@ export default function BookTable () {
                   <DatePicker 
                         id="date"
                         name="date"
+                        showPopperArrow={false}
                         selected={startDate}
                         minDate={new Date()}
                         onChange={(date) => setStartDate(date)}
-                        dateFormat="MM/dd/yyyy"
+                        dateFormat="dd/MM/yyyy"
                   />
               </FormControl>
 
@@ -166,8 +200,9 @@ export default function BookTable () {
                   <option value="birthday" style={{color: "black"}}>birthday</option>
                   <option value="anniversary" style={{color: "black"}}>anniversary</option>
                   <option value="wedding" style={{color: "black"}}>wedding</option>
+                  <option value="divorce" style={{color: "black"}}>divorce</option>
                   <option value="promotion" style={{color: "black"}}>promotion</option>
-                  <option value="bachelor party" style={{color: "black"}}>bachelor party</option>
+                  <option value="bachelor" style={{color: "black"}}>bachelor party</option>
                   <option value="none" style={{color: "black"}}>no special occasion</option>
                 </Select>
               </FormControl>

@@ -21,13 +21,13 @@ function App() {
     <div className='mainDiv'>
     <nav className='nawigacja'>
             <Link to="/"><img className="lemonImage" src={lemon} alt="lemon"></img></Link>
-            <Link to="/main" className="nav-item">Main</Link>
+            <Link to="/specials" className="nav-item">Specials</Link>
             <Link to="/bookTable" className="nav-item">Book Table</Link>
             <Link to="/menu" className="nav-item">Menu</Link>
     </nav>
     <Routes>
                 <Route path="/" element={<HomePage />} />
-                <Route path="/main" element={<Main />} />
+                <Route path="/specials" element={<Main />} />
                 <Route path="/bookTable" element={<BookTable />} />
                 <Route path="/menu" element={<Menu />} />
     </Routes>
