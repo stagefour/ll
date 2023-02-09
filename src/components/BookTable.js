@@ -35,18 +35,18 @@ export default function BookTable () {
 
     const formik = useFormik({
         initialValues: {
+          validateOnMount: true,
           firstName: '',
           email: '',
-          date: '2023-03-31',
-          hour: '18:00',
+          date: '',
+          hour: '17:00',
           guests: 1,
           occasion: 'none',
           comment: 'none',
         },
         onSubmit: (values) => {
           formik.values.date = startDate.toLocaleDateString();
-          console.log (values);
-          Math.random() > 0.5 ? setIsOpen(true) : setIsErrorOpen (true);
+          formik.values.hour !== '18:00' && formik.values.hour !=='21:00' ? setIsOpen(true) : setIsErrorOpen (true);
         },
         validationSchema: Yup.object({
           email: Yup.string()
@@ -55,7 +55,7 @@ export default function BookTable () {
           firstName: Yup.string()
             .required("Required"),
           comment: Yup.string()
-            .min(4, "It's too short, if none - please enter none")
+            .min(4, "It's too short, if none - please enter 'none'")
             .required("Required")
         }), 
       });
@@ -70,6 +70,19 @@ export default function BookTable () {
         <Heading as="h1">
           Table Booking
         </Heading>
+        <br/>
+        <details>
+          <summary><b>Something about the hours</b></summary>
+                <p><b>Because their Api script is not working at all...</b>
+                <br/>
+                I've set two hours as unavailable - to get the 'non-confirmed' message.<br/>
+                When I've tried to load up their script it gives me<br/>
+                'cross-origin read blocking' error on the console.<br/>
+                'Response is with MIME type <b>text/plain</b>'.<br/>
+                If I specify script type as 'text/plain' the error disappears but<br/>
+                either way I am not able to use their functions in my code.<br/>
+                So... I've decided to manually set two hours to unavailable.</p>
+        </details>
         <Box p={6} rounded="md" w="100%">
           <form onSubmit={(e) => { e.preventDefault();
             formik.handleSubmit(e) }}>
@@ -90,7 +103,7 @@ export default function BookTable () {
                 <br/>
                 {<b>Booking detalis:</b>}
                 <br/>
-                {' - On ' + formik.values.date + ' at ' + formik.values.hour + ' table for ' + formik.values.guests}
+                {' - On ' + formik.values.date + ' at ' + formik.values.hour + ', table for ' + formik.values.guests}
                 {formik.values.guests === 1 ? ' guest.' : ' guests.'}
                 <br/>
                 {formik.values.occasion === 'none' ? ' - Just a nice dinner without any particular occasion.'
@@ -125,8 +138,8 @@ export default function BookTable () {
 
 
             <VStack spacing={4}>
-              <FormControl isInvalid={formik.errors.firstName && formik.touched.firstName}>
-                <FormLabel htmlFor="firstName">Name</FormLabel>
+              <FormControl isInvalid={formik.errors.firstName}>
+                <FormLabel htmlFor="firstName">Name *</FormLabel>
                 <Input
                   id="firstName"
                   name="firstName"
@@ -138,8 +151,8 @@ export default function BookTable () {
                 </FormErrorMessage>
               </FormControl>
 
-              <FormControl isInvalid={formik.errors.email && formik.touched.email}>
-                <FormLabel htmlFor="email">Email Address</FormLabel>
+              <FormControl isInvalid={formik.errors.email}>
+                <FormLabel htmlFor="email">Email Address *</FormLabel>
                 <Input
                   id="email"
                   name="email"
@@ -184,10 +197,10 @@ export default function BookTable () {
                                   onChange={formik.handleChange}
                                   value={formik.values.hour}>
                   <option value="17:00" style={{color: "black"}}>17:00</option>
-                  <option value="18:00" style={{color: "black"}}>18:00</option>
+                  <option value="18:00" style={{color: "black"}}>18:00 this one is set to unavailable</option>
                   <option value="19:00" style={{color: "black"}}>19:00</option>
                   <option value="20:00" style={{color: "black"}}>20:00</option>
-                  <option value="21:00" style={{color: "black"}}>21:00</option>
+                  <option value="21:00" style={{color: "black"}}>21:00 this one is set to unavailable</option>
                   <option value="22:00" style={{color: "black"}}>22:00</option>
                 </Select>
               </FormControl>
@@ -207,7 +220,7 @@ export default function BookTable () {
                 </Select>
               </FormControl>
 
-              <FormControl isInvalid={formik.errors.comment && formik.touched.comment}>
+              <FormControl isInvalid={formik.errors.comment}>
                 <FormLabel htmlFor="comment">Special requirements</FormLabel>
                 <Textarea
                   id="comment"
@@ -221,7 +234,7 @@ export default function BookTable () {
                 </FormErrorMessage>
               </FormControl>
           
-              <Button type="submit" colorScheme="purple" width="full">
+              <Button isDisabled={!(formik.isValid && formik.dirty)} type="submit" colorScheme="purple" width="full">
                 SUBMIT
               </Button>
             </VStack>

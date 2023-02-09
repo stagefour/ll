@@ -44,3 +44,40 @@ ul {
     box-shadow: 2px 2px 2px 2px  black;
     border-radius: 10px;
 }
+
+details > summary {
+    padding: 4px;
+    width: 250px;
+    margin-bottom: 10px;
+    background-color: #eeeeee;
+    color: black;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 4px;
+    box-shadow: 1px 1px 2px black;
+    cursor: pointer;
+  }
+
+summary:hover {
+    background-color: lightgray;
+}
+
+details > p {
+    padding: 5px;
+    width: 50vw;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #eeeeee;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 4px;
+    box-shadow: 1px 1px 2px black;
+}
+
+@media screen and (max-width: 1024px) {
+    details > p  {
+      width: 95vw;
+    }
+  }

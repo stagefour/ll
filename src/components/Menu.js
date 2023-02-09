@@ -51,7 +51,6 @@ function MenuList () {
             description: 'Grilled chicken legs served with boiled eggs and the argula salad ',
             price: '$6.95'
         } ];
-    console.log (dishes);
     return (
     <>
     <Heading as="h4">ENJOY</Heading>
@@ -79,12 +78,14 @@ export default function Menu () {
         <br/>
         Our Menu:
         </Heading>
+        <br/>
         <details>
-            Here's our incredible menu <br/>
-            If you want to order online - you can't<br/>
-            Because this exercise is all about booking the table online<br/>
+          <summary><b>Click to see the details</b></summary>
+            <p><b>Here's our incredible menu!</b><br/>
+            If you want to order online - you can't,<br/>
+            because this exercise is all about booking the table online.<br/>
             So - don't really bother about this sub-page.<br/>
-            Just - book the table and <b>come to us!!!</b><br/>
+            Just - book the table and <b>have fun!</b></p>
         </details>
         <section>
             <MenuList />

@@ -12,14 +12,16 @@ export default function Main () {
         <div className='specialsDiv'>
             <Heading as="h1">
                 Little Lemon Restaurant!<br/>
-                Specials for today
+                Specials for today:
             </Heading>
+            <br/>
             <details>
-                Here's going to be some special offers, promotions etc. <br/>
+              <summary><b>Click to see the details</b></summary>
+                <p><b>Here's going to be some special offers, promotions etc.</b><br/>
                 I've put something in it just for show.<br/>
                 But it's not what this exercise is about,<br/>
                 so this sub-page seems a bit empty.<br/>
-                Jump into the book-table stuff <b>and grade it well ;)</b><br/>
+                Jump into the book-table stuff and <b>enjoy!</b></p>
             </details>
         <div className="rowRow">
         <img className="specialPic" src={demonic} alt="demonicChef"></img>
