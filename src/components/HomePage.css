@@ -1,0 +1,38 @@
+.homepageDiv {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    margin-bottom: 40px;
+    padding: 10px;
+    background-color: lime;
+    color: black;
+    border-radius: 7px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    box-shadow: 2px 2px 2px grey;
+}
+
+.textAbout {
+    font-size: 1em;
+    font-style: italic;
+}
+
+
+.imageRestaurantPic {
+    float: left;
+    width: 45%;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    object-fit: contain;
+    box-shadow: 2px 2px 2px 2px  black;
+    border-radius: 10px;
+}
+
+
+@media screen and (max-width: 450px) {
+    .imageRestaurantPic  {
+      width: 100%;
+    }
+  }

@@ -1,0 +1,86 @@
+body {
+  background-image: url('./assets/dots.png');
+}
+
+.mainDiv {
+  position: relative;
+  height: auto;
+  padding: 3px;
+}
+
+
+.nawigacja {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  text-align: center;
+  background-color: black;
+  margin: 4px;
+  padding: 3px;
+  border-radius: 7px;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  box-shadow: 2px 2px 2px grey;
+}
+
+.nav-item {
+  text-decoration: none;
+  margin: 4px;
+  width: 200px;
+  margin-right: 10px;
+  margin-left: 20px;
+  padding: 1px 10px 1px 10px;
+  color: black;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  border-radius: 5px;
+  background-color: gray;
+  box-shadow: 3px 3px 3px lightgray;
+}
+
+@media screen and (max-width: 800px) {
+  .nav-item  {
+    margin-left: 200px; 
+  }
+}
+
+@media screen and (max-width: 365px) {
+  .nav-item  {
+    margin-right: 5px;
+    margin-left: 120px;
+    width: 125px;
+  }
+}
+
+.nav-item:hover {
+  background-color: lightgray;
+}
+
+.nav-item:active {
+  background-color: white;
+  box-shadow: 1px 1px 1px blue;
+}
+
+.lemonImage {
+  position: absolute;
+  float: left;
+  left: 5px;
+  top: 7px;
+  width: 100px;
+  height: auto;
+  object-fit: contain;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  border-radius: 4px;
+  box-shadow: 3px 3px 1px lightgray;
+}
+
+.lemonImage:hover {
+  box-shadow: 3px 3px 1px blue;
+}
+
+

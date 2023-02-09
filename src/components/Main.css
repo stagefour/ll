@@ -1,0 +1,15 @@
+.specialsDiv {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    margin-bottom: 40px;
+    padding: 10px;
+    background-color: lightskyblue;
+    color: black;
+    border-radius: 7px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    box-shadow: 2px 2px 2px grey;
+}
