@@ -11,9 +11,16 @@ import { Route, Routes, Link } from 'react-router-dom';
 import lemon from './assets/little_lemon_logo.png';
 
 
+const availableTimes = ['17:00', '19:00', '20:00', '22:00'];
+
+
 function App() {
 
-  useEffect (() => { document.title = "Little Lemon" },[]);
+
+  useEffect (() => { document.title = "Little Lemon";},[]);
+
+
+
 
   return (
     <>
@@ -28,7 +35,7 @@ function App() {
     <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/specials" element={<Main />} />
-                <Route path="/bookTable" element={<BookTable />} />
+                <Route path="/bookTable" element={<BookTable times={availableTimes} />} />
                 <Route path="/menu" element={<Menu />} />
     </Routes>
     <Footer />

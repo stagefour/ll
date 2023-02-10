@@ -1,4 +1,12 @@
 
+// this is my Booking Form Component
+// tested in App.test.js
+// props for availableTimes passed from parent component, which is App.js
+// type npm test in terminal
+
+// available hours managed from the parent component
+
+
 import './BookTable.css';
 import { useRef, useState } from 'react';
 import DatePicker from 'react-datepicker';
@@ -24,7 +32,7 @@ import {
 } from "@chakra-ui/react";
 import * as Yup from 'yup';
 
-export default function BookTable () {
+export default function BookTable (props) {
 
   const [isOpen, setIsOpen] = useState(false);
   const [isErrorOpen, setIsErrorOpen] = useState(false);
@@ -46,7 +54,9 @@ export default function BookTable () {
         },
         onSubmit: (values) => {
           formik.values.date = startDate.toLocaleDateString();
-          formik.values.hour !== '18:00' && formik.values.hour !=='21:00' ? setIsOpen(true) : setIsErrorOpen (true);
+          if (formik.values.hour === props.times[0] || formik.values.hour === props.times[1] 
+            || formik.values.hour === props.times[2] || formik.values.hour === props.times[3])
+            { setIsOpen (true) } else { setIsErrorOpen (true) };
         },
         validationSchema: Yup.object({
           email: Yup.string()
@@ -60,8 +70,6 @@ export default function BookTable () {
         }), 
       });
 
-    
-
 
     return ( 
       <>
@@ -69,7 +77,7 @@ export default function BookTable () {
 
         <VStack w="100%" p={3} alignItems="flex-start">
         <Heading as="h1">
-          Table Booking
+          Table Booking Form
         </Heading>
         <br/>
         <details>
